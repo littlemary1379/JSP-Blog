@@ -57,7 +57,7 @@ public class UsersJoinProcAction implements Action {
 		
 		//4. index.jsp 페이지 이동
 		if(result==1) {
-			RequestDispatcher dis=request.getRequestDispatcher("index.jsp");
+			Script.href("회원가입에 성공하였습니다.", "/blog/user?cmd=login", response);
 		}else {
 			Script.back("회원가입에 실패하셨습니다.", response);
 		}

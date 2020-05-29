@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.cos.blog.action.Action;
 import com.cos.blog.action.user.UsersJoinAction;
 import com.cos.blog.action.user.UsersJoinProcAction;
+import com.cos.blog.action.user.UsersLoginAction;
 
 
 //http://localhost:8000/blog/user
@@ -53,6 +54,7 @@ public class UsersController extends HttpServlet {
 			//회원 삭제 진행 후 -> 로그아웃 -> index.jsp
 		}else if(cmd.equals("login")) {
 			//회원 로그인 페이지로 이동
+			return new UsersLoginAction();
 		}else if(cmd.equals("loginProc")) {
 			//로그인 수행 -> 세션 등록 -> index.jsp
 		}
