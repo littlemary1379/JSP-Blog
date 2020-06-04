@@ -84,15 +84,26 @@ public class BoardRepository {
 	}
 	
 	public List<Board> findAll() {
-		final String SQL="";
+		final String SQL="select * from board order by id desc";
 		List<Board> boards=new ArrayList<>();
 		try {
 			conn=DBConn.getConnection();
 			pstmt = conn.prepareStatement(SQL);
 			//물음표 완성하기
 			
-			
+			rs=pstmt.executeQuery();
 			//while
+			while(rs.next()) {
+				Board board=new Board(
+						rs.getInt("id"),
+						rs.getInt("userId"),
+						rs.getString("title"),
+						rs.getString("content"),
+						rs.getInt("readCount"),
+						rs.getTimestamp("createDate")
+				);		
+				boards.add(board);
+			}
 			return boards;
 		} catch (Exception e) {
 			e.printStackTrace();
