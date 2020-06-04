@@ -32,16 +32,12 @@ public class BoardWriteProcAction implements Action{
 			Users principal=(Users)session.getAttribute("principal");
 			int userId=principal.getId();
 			
-			System.out.println("BoardWriteProc : " + title);
-			System.out.println("BoardWriteProc : " + content);
-			System.out.println("BoardWriteProc : " + userId);
-
-		
 		//3. title 값과 content값, pricipal.getId()을 board 오브젝트에 담기
 			Board board=Board.builder().
 					userId(userId).
 					title(title).
 					content(content).
+					readCount(0).
 					build();
 		//3. Repository 연결해서 save(board) 함수 호출
 			BoardRepository boardRepository=BoardRepository.getInstance();

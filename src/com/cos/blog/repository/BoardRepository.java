@@ -26,7 +26,7 @@ public class BoardRepository {
 	private ResultSet rs=null;
 	
 	public int save(Board board) {
-		final String SQL="insert into board(id,userId,title,content,readCount,createdate) values (Board_SEQ.nextval,?,?,?,?,sysdate)";
+		final String SQL="insert into board(id,userId,title,content,createdate) values (Board_SEQ.nextval,?,?,?,sysdate)";
 		try {
 			conn=DBConn.getConnection();
 			pstmt = conn.prepareStatement(SQL);
@@ -34,7 +34,7 @@ public class BoardRepository {
 			pstmt.setInt(1, board.getUserId());
 			pstmt.setString(2, board.getTitle());
 			pstmt.setString(3, board.getContent());
-			pstmt.setInt(4, 0);
+
 	
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
