@@ -1,3 +1,4 @@
+  
 package com.cos.blog.action.board;
 
 import java.io.IOException;
@@ -18,18 +19,17 @@ public class BoardHomeAction implements Action{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. DB연결해서 Board 목록 다 불러와서
-		BoardRepository boardRepository=BoardRepository.getInstance();
-		List<Board> boards=boardRepository.findAll();
-		System.out.println(boards);
-		// 2. request에 담고
-		
-//		for (Board board : boards) {
-//			String preview=HtmlParser.getContentPreview(board.getContent());
-//			board.setContent(preview);
-//		}
+		BoardRepository boardRepository = BoardRepository.getInstance();
+		List<Board> boards = boardRepository.findAll();
+
+		// 본문 짧게 가공하기
+		for (Board board : boards) {
+			String preview = HtmlParser.getContentPreview(board.getContent());
+			board.setContent(preview);
+		}
+	
 		request.setAttribute("boards", boards);
 		
-		// 3. 이동 home.jsp
 		RequestDispatcher dis = 
 				request.getRequestDispatcher("home.jsp");
 		dis.forward(request, response);

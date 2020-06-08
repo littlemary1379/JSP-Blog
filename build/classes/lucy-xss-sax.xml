@@ -104,7 +104,7 @@
         <element name="wbr"/>
         <element name="xml"/>
         <element name="xmp"/>
-
+        
         <!-- HTML5 added at 2012.04.10 Start-->
         <element name="article"/>
         <element name="aside"/>
@@ -133,12 +133,12 @@
         <element name="track"/>
         <element name="video"/>
         <!-- HTML5 added at 2012.04.10 End-->
-
+        
         <!-- IE핵 처리를 위해 추가-->
         <element name="IEHackExtension" disable="ture" >
         </element>
     </elementRule>
-
+ 
     <attributeRule>
         <attribute name="src">
             <allowedPattern><![CDATA[['"]?\s*http://.*]]></allowedPattern>
@@ -151,4 +151,4 @@
     </attributeRule>
 
 
-</config> 
+</config>

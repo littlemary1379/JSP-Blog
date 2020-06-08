@@ -13,6 +13,8 @@ import com.cos.blog.action.user.UsersJoinProcAction;
 import com.cos.blog.action.user.UsersLoginAction;
 import com.cos.blog.action.user.UsersLoginProcAction;
 import com.cos.blog.action.user.UsersLogoutAction;
+import com.cos.blog.action.user.UsersUpdateAction;
+import com.cos.blog.action.user.UsersUpdateProcAction;
 import com.cos.blog.action.user.UsersUsernameCheckAction;
 
 
@@ -50,9 +52,11 @@ public class UsersController extends HttpServlet {
 			//회원가입 진행 후 -> index.jsp 이동
 			return new UsersJoinProcAction();
 		}else if(cmd.equals("update")) {
+			return new UsersUpdateAction();
 			//회원 수정 페이지 이동(세션에 user object를 가지고 있을 예정)
 		}else if(cmd.equals("updateProc")) {
 			//회원 수정 진행 -> index 이동
+			return new UsersUpdateProcAction();
 		}else if(cmd.equals("delete")) {
 			//회원 삭제 진행 후 -> 로그아웃 -> index.jsp
 		}else if(cmd.equals("login")) {

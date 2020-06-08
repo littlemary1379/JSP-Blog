@@ -103,12 +103,16 @@ public class UsersRepository {
 	}
 	
 	public int update(Users user) {
-		final String SQL="";
+		final String SQL="update users set email=? , address=? where id=?";
 		try {
 			conn=DBConn.getConnection();
 			pstmt = conn.prepareStatement(SQL);
 			//물음표 완성하기
+			pstmt.setString(1, user.getEmail());
+			pstmt.setString(2, user.getAddress());
+			pstmt.setInt(3, user.getId());
 			
+			System.out.println(pstmt.executeUpdate());
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

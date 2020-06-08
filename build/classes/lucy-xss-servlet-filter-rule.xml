@@ -10,8 +10,7 @@
 		</defender>
 	</defenders>
 
-    <!-- default defender 선언, 필터링 시 지정한 defender가 없으면 여기 정의된 default defender를 사용해 필터링 한다. -->
- 	<!-- XssSaxFilter 등록 -->
+	<!-- XssSaxFilter 등록 -->
 	<defender>
 		<name>xssSaxFilterDefender</name>
 		<class>com.navercorp.lucy.security.xss.servletfilter.defender.XssSaxFilterDefender
@@ -45,5 +44,4 @@
 			</params>
 		</url-rule>
 	</url-rule-set>
-
-</config> 
+</config>
