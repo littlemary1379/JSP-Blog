@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.cos.blog.action.Action;
 import com.cos.blog.model.Board;
 import com.cos.blog.repository.BoardRepository;
+import com.cos.blog.util.HtmlParser;
 
 public class BoardHomeAction implements Action{
 
@@ -22,12 +23,12 @@ public class BoardHomeAction implements Action{
 		System.out.println(boards);
 		// 2. request에 담고
 		
-		for (Board board : boards) {
-			String preview=board.getContent();
-			preview=preview.substring(0,2)+"...";
-			board.setContent(preview);
-		}
+//		for (Board board : boards) {
+//			String preview=HtmlParser.getContentPreview(board.getContent());
+//			board.setContent(preview);
+//		}
 		request.setAttribute("boards", boards);
+		
 		// 3. 이동 home.jsp
 		RequestDispatcher dis = 
 				request.getRequestDispatcher("home.jsp");

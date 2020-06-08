@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.cos.blog.action.Action;
+import com.cos.blog.action.board.BoardDetailAction;
 import com.cos.blog.action.board.BoardHomeAction;
 import com.cos.blog.action.board.BoardWriteAction;
 import com.cos.blog.action.board.BoardWriteProcAction;
@@ -50,7 +51,10 @@ public class BoardController extends HttpServlet {
 		}else if(cmd.equals("writeProc")) {
 			// 글쓰기 정보 넘기기
 			return new BoardWriteProcAction();
-		}return null;
+		}else if(cmd.equals("detail")) {
+			return new BoardDetailAction();
+		}
+		return null;
 		
 	}
 	
