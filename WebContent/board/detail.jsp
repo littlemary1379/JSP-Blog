@@ -17,11 +17,6 @@
 		<div class="container p-3 my-3 border">${dto.board.content }</div>
 	</div>
 	
-	<div class="form-group">
-		<div class="container p-3 my-3 border">
-			<iframe src="https://youtu.be/zCIr-lbCuXc?list=PLLoamEZ5bJuHvVYx5w0ayFeC93apFEQml"></iframe>
-		</div>
-	</div>
 
 </div>
 <%@ include file="../include/footer.jsp"%>
