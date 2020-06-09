@@ -38,6 +38,7 @@ public class BoardDetailAction implements Action{
 			Board board=dto.getBoard();
 			result=YoutubeParser.getYoutubePreview(board.getContent());
 			board.setContent(result);
+			
 			request.setAttribute("dto", dto);
 			//request를 유지하기 때문에 데이터를 담고 이동할때 사용
 			RequestDispatcher dis=request.getRequestDispatcher("board/detail.jsp"); 

@@ -14,6 +14,7 @@ import com.cos.blog.action.Action;
 import com.cos.blog.model.RoleType;
 import com.cos.blog.model.Users;
 import com.cos.blog.repository.UsersRepository;
+import com.cos.blog.util.SHA256;
 import com.cos.blog.util.Script;
 
 public class UsersJoinProcAction implements Action {
@@ -37,7 +38,8 @@ public class UsersJoinProcAction implements Action {
 		
 		//1. 파라메터 받기(x-www-form-urlencoded mime type -> key = value)
 		String username = request.getParameter("username");
-		String password = request.getParameter("password");
+		String rawPassword = request.getParameter("password");
+		String password=SHA256.encodeSha256(rawPassword);
 		String email = request.getParameter("email");
 		String address=request.getParameter("address");
 		String userRole=RoleType.USER.toString();

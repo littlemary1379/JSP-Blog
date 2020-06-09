@@ -17,27 +17,30 @@ public class YoutubeParser {
 	
 		//System.out.println(value);
 
-		for (Element element : aTags) {
+		for (Element aTag : aTags) {
 			
-			String value = element.attr("href");
+			String value = aTag.attr("href");
+			System.out.println("aTag : "+aTag);
+			System.out.println("value : " + value);
 
-				if (value.contains("https://www.youtube.com/")) {
+				if (value.contains("https://www.youtube.com/") && !aTag.attr("target").equals("_blank")) {
+
 					System.out.println("aTags: " + aTags);
 					System.out.println("value: " + value);
 					String[] sp = value.split("=");
 					another = sp[1];
-					System.out.println("another :" +another);
+					//System.out.println("another :" +another);
 					youtubeurl = "</br><iframe src='https://www.youtube.com/embed/" + another
-							+ "' style='width: 500px; height: 300px'></br>";
-					element.after(youtubeurl);
+							+ "' style='width: 500px; height: 300px' allowfullscreen></iframe></br>";
+					aTag.after(youtubeurl);
 
 				} else if (value.contains("https://youtu.be/")) {
 					String[] sp = value.split("/");
 					another = sp[3];
-					System.out.println("another :"+another);
+					//system.out.println("another :"+another);
 					youtubeurl = "</br><iframe src='https://www.youtube.com/embed/" + another
-							+ "' style='width: 500px; height: 300px'></br>";
-					element.after(youtubeurl);
+							+ "' style='width: 500px; height: 300px' allowfullscreen></iframe></br>";
+					aTag.after(youtubeurl);
 
 			}
 				
