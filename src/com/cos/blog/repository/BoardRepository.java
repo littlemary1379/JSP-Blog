@@ -69,6 +69,28 @@ public class BoardRepository {
 		return -1;
 	}
 	
+	public int update(int id) {
+		final String SQL="Update board set readCount=readCount+1 where id = ? ";
+		try {
+			conn=DBConn.getConnection();
+			pstmt = conn.prepareStatement(SQL);
+			//물음표 완성하기
+			
+			pstmt.setInt(1, id);
+
+			pstmt.executeUpdate();
+			
+			return 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(TAG+"update : "+e.getMessage());
+		}finally {
+			DBConn.close(conn, pstmt);
+		}
+		
+		return -1;
+	}
+	
 	public int deleteByID(int id) {
 		final String SQL="delete from board where id=?";
 		try {
@@ -86,6 +108,45 @@ public class BoardRepository {
 		
 		return -1;
 	}
+	
+	public List<Board> findAll(int page) {
+		StringBuilder sb=new StringBuilder();
+		sb.append("select /*+ INDEX_DESC(BOARD SYS_C008232)*/id, userid, title, content, readcount, createdate ");
+		sb.append("FROM board ");
+		sb.append("OFFSET ? ROWS FETCH NEXT 3 ROWS ONLY");
+
+		final String SQL=sb.toString();
+		List<Board> boards=new ArrayList<>();
+		try {
+			conn=DBConn.getConnection();
+			pstmt = conn.prepareStatement(SQL);
+			//물음표 완성하기
+			pstmt.setInt(1, page*3);
+			
+			rs=pstmt.executeQuery();
+			//while
+			while(rs.next()) {
+				Board board=new Board(
+						rs.getInt("id"),
+						rs.getInt("userId"),
+						rs.getString("title"),
+						rs.getString("content"),
+						rs.getInt("readCount"),
+						rs.getTimestamp("createDate")
+				);		
+				boards.add(board);
+			}
+			return boards;
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(TAG+"findAll : "+e.getMessage());
+		}finally {
+			DBConn.close(conn, pstmt);
+		}
+	
+		return null;
+	}
+	
 	
 	public List<Board> findAll() {
 		final String SQL="select * from board order by id desc";
@@ -117,6 +178,30 @@ public class BoardRepository {
 		}
 		
 		return null;
+	}
+	
+	public int countAll() {
+		final String SQL="select count(*) from board";
+		int totalCount=0;
+		try {
+			conn=DBConn.getConnection();
+			pstmt = conn.prepareStatement(SQL);
+			//물음표 완성하기
+			
+			rs=pstmt.executeQuery();
+			//while
+			if(rs.next()) {
+				totalCount=rs.getInt("count(*)");
+			}
+			return totalCount;
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(TAG+"findAll : "+e.getMessage());
+		}finally {
+			DBConn.close(conn, pstmt);
+		}
+		
+		return -1;
 	}
 	
 	public DetailResponseDto findById(int id) {

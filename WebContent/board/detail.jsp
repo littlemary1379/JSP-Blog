@@ -9,7 +9,7 @@
 		<button class="btn btn-danger" onclick="deleteById(${dto.board.id})">삭제</button>
 	</c:if>
 	<br/><br/>	
-	<h6>작성자 : <i>${dto.username }</i></h6>
+	<h6>작성자 : <i>${dto.username },</i> 조회수 :${dto.board.readCount }</h6>
 	<br/>	
 	<h3><b>${dto.board.title }</b></h3>
 	

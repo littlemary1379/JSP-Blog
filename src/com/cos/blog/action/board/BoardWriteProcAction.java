@@ -43,7 +43,7 @@ public class BoardWriteProcAction implements Action {
 
 		// 4. result==1이면 성공로직(index.jsp)로 이동
 		if (result == 1) {
-			Script.href("게시글 등록에 성공하셨습니다.", "/blog/board?cmd=home", response);
+			Script.href("게시글 등록에 성공하셨습니다.", "/blog/board?cmd=home&page=0", response);
 		} else {
 			// 5. result != 1이면 실패로직(history.back())
 			Script.back("게시글 등록에 실패하셨습니다.", response);

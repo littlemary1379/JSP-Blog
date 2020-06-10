@@ -15,6 +15,7 @@ import com.cos.blog.action.Action;
 import com.cos.blog.model.RoleType;
 import com.cos.blog.model.Users;
 import com.cos.blog.repository.UsersRepository;
+import com.cos.blog.util.SHA256;
 import com.cos.blog.util.Script;
 
 import sun.font.CreatedFontTracker;
@@ -30,6 +31,8 @@ public class UsersUpdateProcAction implements Action {
 		if(
 			request.getParameter("username").equals("")||
 			request.getParameter("username")==null||
+			request.getParameter("password").equals("")||
+			request.getParameter("password")==null||
 			request.getParameter("email").equals("")||
 			request.getParameter("email")==null||
 			request.getParameter("address").equals("")||
@@ -42,6 +45,8 @@ public class UsersUpdateProcAction implements Action {
 		
 		//1. 파라메터 받기(x-www-form-urlencoded mime type -> key = value)
 		Users users=(Users)session.getAttribute("principal");
+		String rawpassword=request.getParameter("password");
+		String password=SHA256.encodeSha256(rawpassword);
 		String username = request.getParameter("username");
 		String email = request.getParameter("email");
 		String address=request.getParameter("address");
@@ -50,6 +55,7 @@ public class UsersUpdateProcAction implements Action {
 		Users user=Users.builder()
 				.id(users.getId())
 				.username(username)
+				.password(password)
 				.address(address)
 				.email(email)
 				.userRole(users.getUserRole())
@@ -63,7 +69,7 @@ public class UsersUpdateProcAction implements Action {
 		if(result==1) {
 			
 			session.setAttribute("principal", user);
-			Script.href("수정에 성공하였습니다.", "/blog/board?cmd=home", response);
+			Script.href("수정에 성공하였습니다.", "/blog/board?cmd=home&page=0", response);
 		}else {
 			Script.back("수정에 실패하셨습니다.", response);
 		}
