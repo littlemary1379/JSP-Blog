@@ -52,7 +52,7 @@ public class BoardDetailAction implements Action{
 					viewCookie=cookies[i];
 				}
 			}
-			System.out.println("for문 돌고 나온 쿠키 : "+viewCookie);
+			//System.out.println("for문 돌고 나온 쿠키 : "+viewCookie);
 		}else {
 			System.out.println("cookies 확인 로직 : 쿠키가 없습니다.");
 		}
@@ -63,17 +63,21 @@ public class BoardDetailAction implements Action{
 			try {
 				Cookie newCookie=new Cookie("|"+id+"|","readCount");
 				response.addCookie(newCookie);
-				boardRepository.update(id);
+				int result=boardRepository.update(id);
+					if(result==0) {
+						System.out.println("이게뭐셔");
+						return;
+					}
 			} catch (Exception e) {
-				System.out.println("쿠키 넣을때 오류 나나? : "+e.getMessage());
+				//System.out.println("쿠키 넣을때 오류 나나? : "+e.getMessage());
 				e.getStackTrace();
 				
 			}
 
 		}else {
 			System.out.println("viewCookie 확인 로직 : 쿠키 있당");
-			String value=viewCookie.getValue();
-			System.out.println("viewCookie 확인 로직 : 쿠키 value : "+value);
+			//String value=viewCookie.getValue();
+			//System.out.println("viewCookie 확인 로직 : 쿠키 value : "+value);
 		}
 		
 		

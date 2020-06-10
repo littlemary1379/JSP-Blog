@@ -180,6 +180,47 @@ public class BoardRepository {
 		return null;
 	}
 	
+	public List<Board> findAll(int page,String keyword) {
+		StringBuilder sb=new StringBuilder();
+		sb.append("select /*+ INDEX_DESC(BOARD SYS_C008232)*/id, userid, title, content, readcount, createdate ");
+		sb.append("FROM board ");
+		sb.append("where title like ? or content like ? "); //여기선 %안먹음.
+		sb.append("OFFSET ? ROWS FETCH NEXT 3 ROWS ONLY");
+
+		final String SQL=sb.toString();
+		List<Board> boards=new ArrayList<>();
+		try {
+			conn=DBConn.getConnection();
+			pstmt = conn.prepareStatement(SQL);
+			//물음표 완성하기
+			pstmt.setString(1, "%"+keyword+"%");
+			pstmt.setString(2, "%"+keyword+"%");
+			pstmt.setInt(3, page*3);
+			
+			rs=pstmt.executeQuery();
+			//while
+			while(rs.next()) {
+				Board board=new Board(
+						rs.getInt("id"),
+						rs.getInt("userId"),
+						rs.getString("title"),
+						rs.getString("content"),
+						rs.getInt("readCount"),
+						rs.getTimestamp("createDate")
+				);		
+				boards.add(board);
+			}
+			return boards;
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(TAG+"findAll(page,keyword) : "+e.getMessage());
+		}finally {
+			DBConn.close(conn, pstmt);
+		}
+	
+		return null;
+	}
+	
 	public int countAll() {
 		final String SQL="select count(*) from board";
 		int totalCount=0;
@@ -197,6 +238,32 @@ public class BoardRepository {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(TAG+"findAll : "+e.getMessage());
+		}finally {
+			DBConn.close(conn, pstmt);
+		}
+		
+		return -1;
+	}
+	
+	public int countAll(String keyword) {
+		final String SQL="select count(*) from board where title like ? or content like ?";
+		int totalCount=0;
+		try {
+			conn=DBConn.getConnection();
+			pstmt = conn.prepareStatement(SQL);
+			//물음표 완성하기
+			pstmt.setString(1, "%"+keyword+"%");
+			pstmt.setString(2, "%"+keyword+"%");
+			
+			rs=pstmt.executeQuery();
+			//while
+			if(rs.next()) {
+				totalCount=rs.getInt("count(*)");
+			}
+			return totalCount;
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(TAG+"count(keyword) : "+e.getMessage());
 		}finally {
 			DBConn.close(conn, pstmt);
 		}

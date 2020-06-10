@@ -12,6 +12,7 @@ import com.cos.blog.action.Action;
 import com.cos.blog.action.board.BoardDeleteProcAction;
 import com.cos.blog.action.board.BoardDetailAction;
 import com.cos.blog.action.board.BoardHomeAction;
+import com.cos.blog.action.board.BoardSearchAction;
 import com.cos.blog.action.board.BoardUpdateAction;
 import com.cos.blog.action.board.BoardUpdateProcAction;
 import com.cos.blog.action.board.BoardWriteAction;
@@ -46,7 +47,7 @@ public class BoardController extends HttpServlet {
 	
 	public Action router(String cmd) {
 		if(cmd.equals("home")) {
-			// 회원가입 페이지로 이동
+			// 홈페이지로 이동
 			return new BoardHomeAction(); //Board의 목록
 		}else if(cmd.equals("write")) {
 			// 글쓰기 페이지로 이동
@@ -57,9 +58,9 @@ public class BoardController extends HttpServlet {
 		}else if(cmd.equals("detail")) { 
 			//상세보기
 			return new BoardDetailAction();
-		}else if(cmd.equals("update")) {
-			//수정페이지
-			return new BoardUpdateAction();
+		}else if(cmd.equals("search")) {
+			//검색
+			return new BoardSearchAction();
 		}else if(cmd.equals("updateProc")) {
 			//수정페이지
 			return new BoardUpdateProcAction();
