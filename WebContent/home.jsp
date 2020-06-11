@@ -7,28 +7,22 @@
 <c:choose>
 	<c:when test="${empty param.keyword }">
 		<c:set var="pageNext" value="/blog/board?cmd=home&page=${param.page+1 }"/>
-	</c:when>
-	<c:otherwise>
-		<c:set var="pageNext" value="/blog/board?cmd=search&page=${param.page+1 }&keyword=${param.keyword }"/>
-	</c:otherwise>
-</c:choose>
-<c:choose>
-	<c:when test="${empty param.keyword }">
 		<c:set var="pagePrev" value="/blog/board?cmd=home&page=${param.page-1 }"/>
 	</c:when>
 	<c:otherwise>
+		<c:set var="pageNext" value="/blog/board?cmd=search&page=${param.page+1 }&keyword=${param.keyword }"/>
 		<c:set var="pagePrev" value="/blog/board?cmd=search&page=${param.page-1 }&keyword=${param.keyword }"/>
 	</c:otherwise>
 </c:choose>
 
+
 <div class="container">
 
 	<div class="col-md-12 m-2">
-		<form class="form-inline justify-content-end" 
-		action="/blog/board">
+		<form class="form-inline justify-content-end" action="/blog/board">
 			<input type="hidden" name="cmd" value="search"/>
 			<input type="hidden" name="page" value="0"/>
-			<input class="form-control mr-sm-2" name="keyword" type="text"  placeholder="Search">
+			<input class="form-control mr-sm-2" name="keyword" type="text" placeholder="Search">
 			<button class="btn btn-success" type="submit">Search</button>
 		</form>
 	</div>

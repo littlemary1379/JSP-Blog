@@ -16,6 +16,8 @@ import com.cos.blog.action.user.UsersLogoutAction;
 import com.cos.blog.action.user.UsersUpdateAction;
 import com.cos.blog.action.user.UsersUpdateProcAction;
 import com.cos.blog.action.user.UsersUsernameCheckAction;
+import com.cos.blog.action.user.UsersprofileUploadAction;
+import com.cos.blog.action.user.UsersprofileUploadProcAction;
 
 
 //http://localhost:8000/blog/user
@@ -70,6 +72,12 @@ public class UsersController extends HttpServlet {
 			//로그아웃 수행 -> index.jsp
 		}else if(cmd.equals("usernameCheck")) {
 			return new UsersUsernameCheckAction();
+			//아이디와 일치하는 이름이 있는지, 수행 -> index.jsp
+		}else if(cmd.equals("profileUpload")) {
+			return new UsersprofileUploadAction();
+			//아이디와 일치하는 이름이 있는지, 수행 -> index.jsp
+		}else if(cmd.equals("profileUploadProc")) {
+			return new UsersprofileUploadProcAction();
 			//아이디와 일치하는 이름이 있는지, 수행 -> index.jsp
 		}
 		return null;

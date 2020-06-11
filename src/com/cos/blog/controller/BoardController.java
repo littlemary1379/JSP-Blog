@@ -61,8 +61,11 @@ public class BoardController extends HttpServlet {
 		}else if(cmd.equals("search")) {
 			//검색
 			return new BoardSearchAction();
-		}else if(cmd.equals("updateProc")) {
+		}else if(cmd.equals("update")) {
 			//수정페이지
+			return new BoardUpdateAction();
+		}else if(cmd.equals("updateProc")) {
+				//수정페이지
 			return new BoardUpdateProcAction();
 		}else if(cmd.equals("delete")) {
 			//수정페이지
