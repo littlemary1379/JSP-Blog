@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cos.blog.db.DBConn;
+import com.cos.blog.dto.ReplyResponseDto;
 import com.cos.blog.model.Board;
 import com.cos.blog.model.Reply;
 import com.cos.blog.model.Users;
@@ -80,20 +81,51 @@ public class ReplyRepository {
 		return -1;
 	}
 	
-	public List<Reply> findAll() {
-		final String SQL="";
-		List<Reply> replys=new ArrayList<>();
+	
+	public List<ReplyResponseDto> findAll(int boardId) {
+		StringBuffer sb= new StringBuffer();
+		sb.append("select r.id, r.userId, r.boardId, r.content, r.createDate, ");
+		sb.append(" u.username, u.userprofile ");
+		sb.append("from reply r inner join users u ");
+		sb.append("on r.userid=u.id ");
+		sb.append("where boardid=? ");
+		sb.append("order by r.id desc");
+		
+		final String SQL=sb.toString();
+		List<ReplyResponseDto> replyDtos=null;
+		
 		try {
 			conn=DBConn.getConnection();
 			pstmt = conn.prepareStatement(SQL);
 			//물음표 완성하기
+			pstmt.setInt(1, boardId);
+			rs=pstmt.executeQuery();
 			
+			replyDtos=new ArrayList<>();
+			while(rs.next()){
+				Reply reply=Reply.builder()
+						.id(rs.getInt(1))
+						.userId(rs.getInt(2))
+						.boardId(rs.getInt(3))
+						.content(rs.getString(4))
+						.createDate(rs.getTimestamp(5))
+						.build();
+				
+				ReplyResponseDto replydto=ReplyResponseDto.builder()
+									.reply(reply)
+									.username(rs.getString(6))
+									.userProfile(rs.getString(7))
+									.build();
+				replyDtos.add(replydto);
+				
+			}
 			
+			System.out.println("DB replydto : "+replyDtos);
 			//while
-			return replys;
+			return replyDtos;
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println(TAG+"findAll : "+e.getMessage());
+			System.out.println(TAG+"findAll(boardID) : "+e.getMessage());
 		}finally {
 			DBConn.close(conn, pstmt);
 		}
