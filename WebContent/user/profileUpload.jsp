@@ -5,7 +5,7 @@
 <div class="container">
 	<div class = "d-flex justify-content-center">
 	<form action="/blog/user?cmd=profileUploadProc" method="post" enctype="multipart/form-data">
-		<div class="form-group" >
+		<div class="form-group d-flex justify-content-center" >
 			<img id="img__wrap" onerror="this.src='/blog/image/userProfile.png'" src="${sessionScope.principal.userProfile }" width="350px" height="300px" />
 		</div>
 		<div class="form-group bg-light">

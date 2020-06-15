@@ -1,5 +1,6 @@
 
 	$("#img__preview").on("change", function(e){
+		console.log(e);
 		var f=e.target.files[0];
 
 		if(!f.type.match("image*")){

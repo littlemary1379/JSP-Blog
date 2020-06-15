@@ -16,7 +16,7 @@ import com.cos.blog.model.Users;
 //Dao
 public class ReplyRepository {
 	
-	private static final String TAG="BoardRepository : ";
+	private static final String TAG="ReplyRepository : ";
 	private static ReplyRepository instance=new ReplyRepository();
 	private ReplyRepository(){}
 	public static ReplyRepository getInstance() {
@@ -28,13 +28,18 @@ public class ReplyRepository {
 	private ResultSet rs=null;
 	
 	public int save(Reply reply) {
-		final String SQL="";
+		final String SQL="insert into reply(id,userId,boardid,content,createdate) values (reply_SEQ.nextval,?,?,?,sysdate)";
 		try {
 			conn=DBConn.getConnection();
 			pstmt = conn.prepareStatement(SQL);
 			//물음표 완성하기
 			
+			pstmt.setInt(1, reply.getUserId());
+			pstmt.setInt(2, reply.getBoardId());
+			pstmt.setString(3, reply.getContent());
+			
 			return pstmt.executeUpdate();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(TAG+"save : "+e.getMessage());
@@ -64,11 +69,12 @@ public class ReplyRepository {
 	}
 	
 	public int deleteByID(int id) {
-		final String SQL="";
+		final String SQL="delete from reply where id = ?";
 		try {
 			conn=DBConn.getConnection();
 			pstmt = conn.prepareStatement(SQL);
 			//물음표 완성하기
+			pstmt.setInt(1, id);
 			
 			return pstmt.executeUpdate();
 		} catch (Exception e) {

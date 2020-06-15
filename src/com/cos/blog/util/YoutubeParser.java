@@ -20,13 +20,13 @@ public class YoutubeParser {
 		for (Element aTag : aTags) {
 			
 			String value = aTag.attr("href");
-			System.out.println("aTag : "+aTag);
-			System.out.println("value : " + value);
+			//System.out.println("aTag : "+aTag);
+			//System.out.println("value : " + value);
 
 				if (value.contains("https://www.youtube.com/") && !aTag.attr("target").equals("_blank")) {
 
-					System.out.println("aTags: " + aTags);
-					System.out.println("value: " + value);
+					//System.out.println("aTags: " + aTags);
+					//System.out.println("value: " + value);
 					String[] sp = value.split("=");
 					another = sp[1];
 					//System.out.println("another :" +another);

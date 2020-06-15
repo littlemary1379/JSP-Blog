@@ -19,6 +19,7 @@ public class Script {
 			e.printStackTrace();
 		}
 	}
+
 	
 	public static void outJson(String msg, HttpServletResponse response) {
 		try {
