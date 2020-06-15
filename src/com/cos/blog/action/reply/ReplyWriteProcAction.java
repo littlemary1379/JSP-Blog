@@ -3,12 +3,14 @@ package com.cos.blog.action.reply;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.cos.blog.action.Action;
+import com.cos.blog.dto.ReplyResponseDto;
 import com.cos.blog.model.Reply;
 import com.cos.blog.repository.ReplyRepository;
 import com.cos.blog.util.Script;
@@ -40,9 +42,9 @@ public void execute(HttpServletRequest request, HttpServletResponse response) th
 		int result=replyRepository.save(reply);
 		//save 성공하면 1 실패하면 0,1
 		if(result==1) {
-			
-			System.out.println("덧글 등록 성공");
-			Script.outText(result+"", response);
+			List<ReplyResponseDto> replyDtos =replyRepository.findAll(reply.getBoardId());
+			String replyDtosJson=gson.toJson(replyDtos);
+			Script.outJson(replyDtosJson, response);
 
 		}else {
 			Script.outText("error", response);
