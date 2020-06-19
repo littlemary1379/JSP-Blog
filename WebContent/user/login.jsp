@@ -41,6 +41,7 @@
 
 		</c:choose>
 		<button type="submit" class="btn btn-primary">로그인</button>
+		<a href="https://kauth.kakao.com/oauth/authorize?client_id={앱 키}&redirect_uri=http://localhost:8000/blog/oauth/kakao?cmd=callback&response_type=code"><img height="38px" src="/blog/image/kakao_login_button.png" /></a>
 	</form>
 </div>
 

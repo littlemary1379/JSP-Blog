@@ -17,17 +17,17 @@ import com.cos.blog.action.board.BoardUpdateAction;
 import com.cos.blog.action.board.BoardUpdateProcAction;
 import com.cos.blog.action.board.BoardWriteAction;
 import com.cos.blog.action.board.BoardWriteProcAction;
-import com.cos.blog.action.reply.ReplyDeleteProcAction;
-import com.cos.blog.action.reply.ReplyWriteProcAction;
+import com.cos.blog.action.kakao.KakaoJoinProcAction;
+import com.cos.blog.action.kakao.KakaocallbackAction;
 import com.cos.blog.action.user.UsersLoginAction;
 
 // http://localhost:8000/blog/board
-@WebServlet("/reply")
-public class ReplyController extends HttpServlet {
-	private final static String TAG = "ReplyController : ";
+@WebServlet("/oauth/kakao")
+public class KakaoController extends HttpServlet {
+	private final static String TAG = "KakaoController : ";
 	private static final long serialVersionUID = 1L;
        
-    public ReplyController() {
+    public KakaoController() {
         super();
     }
 
@@ -48,12 +48,12 @@ public class ReplyController extends HttpServlet {
 	}
 	
 	public Action router(String cmd) {
-		if(cmd.equals("writeProc")) {
-			//덧글 작성 프로세스
-			return new ReplyWriteProcAction(); 
-		}else if(cmd.equals("deleteProc")) {
-			// 덧글 삭제 프로세스
-			return new ReplyDeleteProcAction();
+		if(cmd.equals("callback")) {
+			// 홈페이지로 이동
+			return new KakaocallbackAction();
+		}else if(cmd.equals("joinProc")) {
+			// 홈페이지로 이동
+			return new KakaoJoinProcAction(); //Board의 목록
 		}
 		return null;
 		

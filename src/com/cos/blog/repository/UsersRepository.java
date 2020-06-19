@@ -24,8 +24,9 @@ public class UsersRepository {
 	private PreparedStatement pstmt=null;
 	private ResultSet rs=null;
 	
-	public int findByUsername(String username) {
-		final String SQL="select count(*) from users where username=?";
+	public Users findByUsername(String username) {
+		final String SQL="select * from users where username=?";
+		Users user=null;
 		try {
 			conn=DBConn.getConnection();
 			pstmt = conn.prepareStatement(SQL);
@@ -33,8 +34,17 @@ public class UsersRepository {
 			pstmt.setString(1, username);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
-				return rs.getInt(1); //0 아니면 1
+				user = new Users();
+						user.setId(rs.getInt("id"));
+						user.setUsername(rs.getString("username"));
+						user.setPassword(rs.getString("password"));
+						user.setAddress(rs.getString("Address"));
+						user.setUserProfile(rs.getString("userprofile"));
+						user.setUserRole(rs.getString("userRole"));
+						user.setCreateDate(rs.getTimestamp("createData"));
+						
 			}
+			return user;
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(TAG+"findByUsername : "+e.getMessage());
@@ -42,7 +52,7 @@ public class UsersRepository {
 			DBConn.close(conn, pstmt);
 		}
 		
-		return -1;
+		return null;
 	}
 	
 	public Users findByUsernameAndPassword(String username, String password) {

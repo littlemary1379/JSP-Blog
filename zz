@@ -1,0 +1,101 @@
+[33mcommit 2d9dff94a586f2fdf62f787c94793e4bbe0c03b2[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: ssul <sser@nate.com>
+Date:   Mon Jun 15 11:42:11 2020 +0900
+
+    덧글 등록 ajax 반영 완료
+
+[33mcommit 9063a503e755cbe14ce3b6c591946613881848f3[m
+Author: ssul <sser@nate.com>
+Date:   Mon Jun 15 10:52:24 2020 +0900
+
+    덧글 삭제 구현
+
+[33mcommit 4e9ac7c2ccdb12a9ac25b51d84b58352647fb47e[m
+Author: ssul <sser@nate.com>
+Date:   Fri Jun 12 11:30:28 2020 +0900
+
+    덧글 구현
+
+[33mcommit 119ac8cbe100515df0228b34fe4db40fe4181681[m
+Author: ssul <sser@nate.com>
+Date:   Thu Jun 11 16:08:53 2020 +0900
+
+    프로필 사진 적용
+
+[33mcommit 373f761cc74636d93185ff292324f89390d0711b[m
+Author: ssul <sser@nate.com>
+Date:   Wed Jun 10 14:30:22 2020 +0900
+
+    키워드 검색 만들기
+
+[33mcommit b3f40a9ef5159a1298d61fbd78ff8c317f16e4c0[m
+Author: ssul <sser@nate.com>
+Date:   Wed Jun 10 10:11:02 2020 +0900
+
+    쿠키를 이용한 새로고침시 조회수 증가 반복 방어
+
+[33mcommit 765de3de8f17d9287896ccce53d10f375b69a13a[m
+Author: ssul <sser@nate.com>
+Date:   Wed Jun 10 09:03:12 2020 +0900
+
+    조회수 증가, 비밀번호 해싱 후 변경, 페이지 시작과 끝 버튼 비활성화
+
+[33mcommit 08d094874e6dda7099afb8fbe37b602c4b4aff48[m
+Author: ssul <sser@nate.com>
+Date:   Tue Jun 9 14:30:05 2020 +0900
+
+    비밀번호 해싱하기
+
+[33mcommit e09df9bff38682398f0a65ec9e941f2cdbf95595[m
+Author: ssul <sser@nate.com>
+Date:   Tue Jun 9 11:06:35 2020 +0900
+
+    유튜브 영상 파싱하기
+
+[33mcommit 2f738fff3b29c294096158ba97af442f351c7133[m
+Author: ssul <sser@nate.com>
+Date:   Mon Jun 8 17:10:02 2020 +0900
+
+    회원수정 완료
+
+[33mcommit 08976dea3196ff116614c130317920b1a0913a85[m
+Author: ssul <sser@nate.com>
+Date:   Mon Jun 8 11:20:33 2020 +0900
+
+    상세보기 적용
+
+[33mcommit bb6b6bcaa0c6ccbc1f61661e2558c54d537296ad[m
+Author: ssul <sser@nate.com>
+Date:   Thu Jun 4 16:05:02 2020 +0900
+
+    블로그 글 미리보기
+
+[33mcommit c296caab44285b79bbd577576d7e79582eefa84b[m
+Author: ssul <sser@nate.com>
+Date:   Thu Jun 4 13:45:36 2020 +0900
+
+    글쓰기 등록(섬머노트 적용)
+
+[33mcommit 7cdc0dce1b2f6339830fbab0177df122ecd767fc[m
+Author: ssul <sser@nate.com>
+Date:   Thu Jun 4 12:09:28 2020 +0900
+
+    글쓰기 등록
+
+[33mcommit d4997805d6f8c52788c44abaf73ca0d4f73a8ccb[m
+Author: ssul <sser@nate.com>
+Date:   Fri May 29 13:25:53 2020 +0900
+
+    20200529 회원가입 완료
+
+[33mcommit 04d1d726cf80d11a790bb00c7ae9cc7d48ad1138[m
+Author: ssul <sser@nate.com>
+Date:   Fri May 29 09:25:01 2020 +0900
+
+    브랜치 연습
+
+[33mcommit cb881092d26234bd7fd69ec7cd9c229708ef2577[m[33m ([m[1;32mpractice[m[33m)[m
+Author: ssul <sser@nate.com>
+Date:   Fri May 29 09:15:44 2020 +0900
+
+    20202528

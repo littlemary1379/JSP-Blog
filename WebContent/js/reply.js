@@ -1,4 +1,4 @@
-	function replydelete(replyId){
+function replydelete(replyId){
 
 		$.ajax({
 			type: "post",
@@ -23,7 +23,7 @@
 			
 		});
 		
-	}
+}
 
 function replyWrite(boardId, userId){
 		console.log(userId);
@@ -62,16 +62,16 @@ function replyWrite(boardId, userId){
 		});
 	}
 
-function renderReplyList(replyDtos){
+function renderReplyList(replyDtos,userId){
 	for (var replyDto of replyDtos) {
-		$("#reply__list").append(makeReplyItem(replyDto));
+		$("#reply__list").append(makeReplyItem(replyDto,userId));
 		//reply-id 추가 시작
 		var replyItem = `<li id="reply-${replyDto.reply.id }" class="media">`;
 		//reply-id 추가 끝
 	}
 }
 
-function makeReplyItem(replyDto) {
+function makeReplyItem(replyDto,userId) {
 	var replyItem=`<li class = "media">`;
 	
 	if(replyDto.userProfile ==null){
@@ -88,9 +88,11 @@ function makeReplyItem(replyDto) {
 
 	//휴지통 추가 시작
 	replyItem += `<div class="m-3">`;
+	if(replyDto.reply.userId==userId){
 	replyItem += `<i onclick="replydelete(${replyDto.reply.id})" style="cursor : pointer;" class="Tiny material-icons">delete</i>`;
+	}
 	replyItem += `</div>`;
-	
+	//휴지통 추가 끝
 	replyItem += `</li>`;
 	
 	return replyItem;
